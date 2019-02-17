@@ -1,31 +1,28 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import './index.css'
-import history from './history'
+import React from 'react';
+import ReactDOM from 'react-dom';
 import store from './store'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { Provider } from 'react-redux'
-import { ConnectedRouter } from 'react-router-redux'
 
-import registerServiceWorker from './registerServiceWorker'
+// Import root app
+import App from './containers/App';
 
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
-import MainRouterSettingLayoutPage from './components/pages/MainRouterSettingLayoutPage'
+// Style
+import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
+import CustomTheme from './styles/CustomTheme'
 
 ReactDOM.render(
   <Provider store={ store }>
-    <ConnectedRouter history={ history }>
+    <MuiThemeProvider theme={ CustomTheme }>
       <Router>
         <Switch>
           <Route
             path='/'
-            component={ MainRouterSettingLayoutPage }
+            component={ App }
           />
         </Switch>
       </Router>
-    </ConnectedRouter>
+    </MuiThemeProvider>
   </Provider>,
   document.getElementById('root')
 )
-
-registerServiceWorker()
