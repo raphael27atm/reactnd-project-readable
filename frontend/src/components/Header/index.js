@@ -1,30 +1,56 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
-const Header = ({categories}) => {
-  return (
-    <div>
-      <div className="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-        <h1 className="display-4">Readable</h1>
-        <p className="lead">Users will be able to post content to predefined categories, comment on their posts and other users' posts, and vote on posts and comments. Users will also be able to edit and delete posts and comments.</p>
-      </div>
-      <div className="card-deck mb-3 text-center">
-        {categories.map(category=>(
-          <div className="card mb-4 box-shadow category-card" key={category.name}>
-            <div className="card-header">
-                <h4 className="my-0 font-weight-normal">{category.name}</h4>
-            </div>
-            <div className="card-body">
-                <p>{category.description}</p>                                        
-                <Link to={`/${category.path}`}>
-                    <button type="button" className="btn btn-lg btn-block btn-outline-primary">View details</button>
-                </Link>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  )
+// Material UI
+import Grid from '@material-ui/core/Grid'
+import Typography from '@material-ui/core/Typography';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import Button from '@material-ui/core/Button';
+
+// Styles
+import { styles } from './styles'
+
+class Header extends Component {
+  render() {
+    const { categories } = this.props
+    const { classes } = this.props
+    return (
+      <React.Fragment>
+        <Typography variant="h6" align="center" color="textSecondary" paragraph>
+          Users will be able to post content to predefined categories, 
+          comment on their posts and other users' posts, and vote on posts and comments. 
+          Users will also be able to edit and delete posts and comments.
+        </Typography>
+        <div className={classes.cardGrid}>
+          <Grid container spacing={40}>
+            {categories.map(category=>(
+              <Grid item key={category.name} sm={6} md={4} lg={4}>
+                <Card className={classes.card}>
+                  <CardContent>
+                    <Typography gutterBottom variant="h5" component="h2">
+                      {category.name}
+                    </Typography>
+                    <Typography>
+                      {category.description}
+                    </Typography>  
+                  </CardContent>
+                  <CardActions>
+                    <Link to={`/${category.path}`}>
+                      <Button size="small" color="primary">
+                        View details
+                      </Button>
+                    </Link>
+                  </CardActions>  
+                </Card>
+                </Grid>
+            ))}
+          </Grid>
+        </div>
+      </React.Fragment>
+    )
+  }
 }
 
-export default Header
+export default styles(Header)

@@ -9,14 +9,20 @@ import { receiveCategories } from '../../redux/actions';
 import * as API from '../../utils/api';
 
 // Material ui
-import Grid from '@material-ui/core/Grid'
+import CssBaseline from '@material-ui/core/CssBaseline';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
 
 // Components
 import Header from '../../components/Header/'
 import Footer from '../../components/Footer/'
-import AllPostsPage from '../../components/Pages/AllPostsPage'
+import AllPostsPage from '../../components/AllPostsPage'
 import PostDetails from '../../components/PostDetails'
 import Category from '../../components/Category'
+
+// Styles
+import { styles } from './styles'
 
 class App extends Component {
   state = {
@@ -34,25 +40,31 @@ class App extends Component {
   }
 
   render() {
+    const { classes } = this.props
     return (
-      <div className="App">
-        <Header categories={this.props.categories}/>  
-          <div>
-            <Grid container spacing={ 0 }>
-              <Grid item md={ 3 }/>
-              <Grid item md={ 6 } container={ true } direction="column">
-                <Switch>
-                  <Route exact path='/' component={ AllPostsPage }/>
-                  <Route exact path = "/:category" component={ Category } />
-                  <Route exact path = "/:category/:postId" component={ PostDetails } />
-                </Switch>
-              </Grid>
-              <Grid item md={ 3 }>
-              </Grid>
-            </Grid>
+      <React.Fragment>
+        <CssBaseline />
+        <AppBar position="static" className={classes.appBar}>
+          <Toolbar>
+            <Typography variant="h6" color="inherit" noWrap>
+              Readable
+            </Typography>
+          </Toolbar>
+        </AppBar>
+        <main>
+          <div className={classes.heroUnit}>
+            <div className={classes.heroContent}>
+              <Header categories={this.props.categories}/>  
+              <Switch>
+                <Route exact path='/' component={ AllPostsPage }/>
+                <Route exact path = "/:category" component={ Category } />
+                <Route exact path = "/:category/:postId" component={ PostDetails } />
+              </Switch>
+            </div>
           </div>
+        </main>
         <Footer />
-      </div>
+      </React.Fragment>
     );
   }
 }
@@ -65,4 +77,4 @@ const mapDispatchToProps = dispatch =>({
   receiveCategories: (data) => dispatch(receiveCategories(data)),
 })
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(styles(App)));
