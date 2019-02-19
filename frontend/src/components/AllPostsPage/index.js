@@ -43,44 +43,36 @@ class DefaultPage extends Component {
     })
   }
 
-  rand() {
-    return Math.round(Math.random() * 20) - 10;
-  }
-
   render() {
     const { classes } = this.props
     this.props.posts.sort((a,b) => (b[this.state.sort] - a[this.state.sort]));
     
     return(
       <React.Fragment>
-        <div className="row">
-          <div className="col-sm-9">
-            <Button onClick={this.handleOpen}>New post</Button>
-            <Modal
-              aria-labelledby="simple-modal-title"
-              aria-describedby="simple-modal-description"
-              open={this.state.open}
-              onClose={this.handleClose}
-            > 
-              <div className={[classes.paper, classes.modal]}>
-                <AddPost />
-              </div>
-            </Modal>
+        <Button onClick={this.handleOpen}>New post</Button>
+        <Modal
+          aria-labelledby="simple-modal-title"
+          aria-describedby="simple-modal-description"
+          open={this.state.open}
+          onClose={this.handleClose}
+        > 
+          <div className={classes.paper}>
+            <AddPost />
           </div>
-          <div className="col-sm-3 pull-right">
-            <div className="form-group">
-              <select className="form-control" onChange={event => this.handleSort(event.target.value)}>
-                <option value="timestamp">Sort by: Date</option>
-                <option value="voteScore">Sort by: Vote Score</option>
-              </select>
-            </div>
-          </div>
-        </div>
+        </Modal>
+        <Grid>
+          <select className="form-control" onChange={event => this.handleSort(event.target.value)}>
+            <option value="timestamp">Sort by: Date</option>
+            <option value="voteScore">Sort by: Vote Score</option>
+          </select>
+        </Grid>
+        <Grid>
         {this.props.posts.map(post=>(
           <Post key={post.id} 
             post = {post}
           />
         ))}
+        </Grid>
       </React.Fragment>
     )
   }

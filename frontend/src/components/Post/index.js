@@ -3,6 +3,9 @@ import {Link} from 'react-router-dom';
 import { dateYYYYMMDDHHMMSS } from '../../utils/utils';
 import PostActions from '../PostActions';
 
+// Styles
+//import { styles } from './styles'
+
 class Post extends Component {
   render() {
     const {post} = this.props;
