@@ -44,23 +44,17 @@ class Post extends Component {
                     <i className="far fa-thumbs-down"></i>
                 )} {post.voteScore}&nbsp;&nbsp;&nbsp;&nbsp;<i className="far fa-comments"></i> {post.commentCount} {post.commentCount > 1 ? 'comments': 'comment'}
               </Typography>
+              <PostActions
+                postId = {post.id}
+              />
             </CardContent>
           </CardActionArea>
           <CardActions className={classes.cardAction}>
-            <Button variant="contained" color="primary" className={classes.button}>
-              Primary
-            </Button>
-            <Button size="small" color="primary">
-              Share
-            </Button>
-            <Link to = {`/${post.category}/${post.id}`}>
-              <Button size="small" color="primary">
+            <Button color="primary">
+              <Link to = {`/${post.category}/${post.id}`}>
                 View details
-              </Button>
-            </Link>
-            <PostActions
-              postId = {post.id}
-            />
+              </Link>
+            </Button>
           </CardActions>
         </Card>
       </React.Fragment>

@@ -20,7 +20,10 @@ const option = theme => ({
     top: '30%',
     left: '45%',
     transform: 'translate(-30%, -20%)'
-  }
+  },
+  button: {
+    margin: theme.spacing.unit,
+  },
 })
 
 export const styles = withStyles(option)

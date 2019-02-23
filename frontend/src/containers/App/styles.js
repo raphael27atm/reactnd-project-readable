@@ -8,7 +8,7 @@ const option = theme => ({
     marginRight: theme.spacing.unit * 2,
   },
   heroUnit: {
-    backgroundColor: theme.palette.background.paper,
+    backgroundColor: '#f4f4f4',
   },
   heroContent: {
     maxWidth: 600,

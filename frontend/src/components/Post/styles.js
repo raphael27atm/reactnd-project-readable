@@ -12,7 +12,7 @@ const option = theme => ({
     margin: theme.spacing.unit,
   },
   cardAction: {
-    backgroundColor: '#f4f4f4',
+    backgroundColor: '#f7f7f7',
   }
 });
 

@@ -48,7 +48,7 @@ class PostActions extends Component {
       return (
         <div>
           <Button 
-            variant="contained" 
+            variant="outlined"
             color="primary" 
             onClick = {event => this.increasePostScore(post.id)} 
             className={classes.button}
@@ -56,24 +56,23 @@ class PostActions extends Component {
             Like
           </Button>
           <Button 
-            variant="contained" 
-            color="primary" 
+            variant="outlined"
+            color="secondary" 
             onClick = {event => this.decreasePostScore(post.id)} 
             className={classes.button}
           >
             Dislike
           </Button>
           <Button 
-            variant="contained" 
-            color="primary" 
+            variant="outlined"
             onClick={this.handleOpen}
             className={classes.button}
           >
             Edit
           </Button>
           <Button 
-            variant="contained" 
-            color="primary" 
+            variant="outlined" 
+            color="danger" 
             onClick = {event => this.removePost(post.id)}
             className={classes.button}
           >
