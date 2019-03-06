@@ -22,6 +22,7 @@ export const addPost = data =>
     },
     body: JSON.stringify(data)
   }).then(data => data.json())
+
 export const removePost = (id) =>
   fetch(`${api}/posts/${id}`, {
     method: 'DELETE',
@@ -30,6 +31,7 @@ export const removePost = (id) =>
       'Content-Type': 'application/json'
     },
   }).then(data => data.json())
+
 export const categories = () =>
   fetch(`${api}/categories`, { headers })
     .then(res => res.json())
@@ -50,6 +52,7 @@ export const editPost = (post) =>{
     body: JSON.stringify(post)
   }).then(res => res.json())
 }
+
 export const decreasePostScore = (id) =>
   fetch(`${api}/posts/${id}`, {
     method: 'POST',
@@ -61,6 +64,7 @@ export const decreasePostScore = (id) =>
       option: 'downVote'
     })
   }).then(data => data.json())
+
 export const increasePostScore = (id) =>
   fetch(`${api}/posts/${id}`, {
     method: 'POST',
@@ -73,7 +77,6 @@ export const increasePostScore = (id) =>
     })
   }).then(data => data.json())
   
-
 export const comments = (postId) =>
   fetch(`${api}/posts/${postId}/comments`, { headers })
     .then(res => res.json())
@@ -119,6 +122,7 @@ export const decreaseCommentScore = (id) =>
       option: 'downVote'
     })
   }).then(data => data.json())
+
 export const increaseCommentScore = (id) =>
   fetch(`${api}/comments/${id}`, {
     method: 'POST',

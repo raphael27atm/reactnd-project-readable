@@ -25,7 +25,7 @@ To download the project follow the instructions bellow:
 
 ```
 git clone https://github.com/raphael27atm/reactnd-project-readable
-cd eactnd-project-readable
+cd reactnd-project-readable
 ```
 
 ### Start server
@@ -60,7 +60,7 @@ or
 ```
 npm install
 npm run start
-``
+```
 
 ## Versions
 
