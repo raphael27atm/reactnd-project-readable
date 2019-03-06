@@ -48,6 +48,7 @@ class AddPost extends Component {
     const {
       classes
     } = this.props;
+    
     return (
       <React.Fragment>
         <Typography variant="h5" component="h3">

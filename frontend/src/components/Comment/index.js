@@ -6,16 +6,18 @@ import { dateYYYYMMDDHHMMSS } from '../../utils/utils';
 
 // Material ui
 import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
 import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import FormControl from '@material-ui/core/FormControl';
+import TextField from '@material-ui/core/TextField';
 
+// Styles
+import { styles } from './styles'
 class Comment extends Component {
   state = {
-    editFlag:false,
+    editFlag: false,
     commentBody:"",
   }
       
@@ -57,43 +59,80 @@ class Comment extends Component {
   }
   
   handleChange(value, type){
-      this.setState({[type]:value})
+    this.setState({[type]:value})
   }
   
   render() {
-    const {comment, postId} = this.props;
+    const {comment, postId, classes} = this.props;
     
     return (
       <div>
-        {this.state.editFlag ? (
-            <input 
-                type="text" 
-                className="form-control"
-                value={this.state.commentBody} 
-                onChange={(event) => this.handleChange(event.target.value,'commentBody')}
-                required 
-            />
-        ):(
-            <p>{comment.body}</p>
-        )}
-          
-          <p className="blog-post-meta"><i>{dateYYYYMMDDHHMMSS(comment.timestamp)}, by {comment.author}</i></p>
-          <p >
-              {comment.voteScore >= 0 ? (
-                  <i className="far fa-thumbs-up"></i>
+        <Card className={classes.card}>
+          <CardActionArea>
+            <CardContent>
+              {this.state.editFlag ? (
+                <FormControl className={classes.formControl}>
+                  <TextField
+                    label="Comment"
+                    value={this.state.commentBody} 
+                    onChange={(event) => this.handleChange(event.target.value,'commentBody')}
+                    className={classes.textField}
+                    margin="normal"
+                    required
+                  />
+                </FormControl>
               ):(
-                  <i className="far fa-thumbs-down"></i>
-              )} {comment.voteScore}
-          </p>
-          <button className="btn btn-sm btn-info" onClick = {event => this.increaseCommentScore(postId, comment.id)}>Like</button>
-          <button className="btn btn-sm btn-info" onClick = {event => this.decreaseCommentScore(postId, comment.id)}>Dislike</button>
-          <button className="btn btn-sm btn-primary" onClick = {event => this.handleEditComment(this.state.editFlag ? false : true)}>{this.state.editFlag ? 'Save' : 'Edit'}</button>
-          <button type="button" className="btn btn-sm btn-danger" onClick = {event => this.removeComment(postId, comment.id)}>Delete</button>
-          <hr />
+                <Typography component="p">
+                  {comment.body}
+                </Typography>
+              )}
+                
+                <p className="blog-post-meta"><i>{dateYYYYMMDDHHMMSS(comment.timestamp)}, by {comment.author}</i></p>
+                <p >
+                    {comment.voteScore >= 0 ? (
+                        <i className="far fa-thumbs-up"></i>
+                    ):(
+                        <i className="far fa-thumbs-down"></i>
+                    )} {comment.voteScore}
+                </p>
+              <Button 
+                variant="outlined"
+                color="primary" 
+                onClick = {event => this.increaseCommentScore(postId, comment.id)}
+                className={classes.button}
+              >
+                Like
+              </Button>
+              <Button 
+                variant="outlined"
+                color="secondary" 
+                onClick = {event => this.decreaseCommentScore(postId, comment.id)}
+                className={classes.button}
+              >
+                Dislike
+              </Button>
+              <Button 
+                variant="outlined"
+                onClick = {event => this.handleEditComment(this.state.editFlag ? false : true)}
+                className={classes.button}
+              >
+                Edit
+              </Button>
+              <Button 
+                variant="outlined" 
+                color="danger" 
+                onClick = {event => this.removeComment(postId, comment.id)}
+                className={classes.button}
+              >
+                Delete
+              </Button>
+            </CardContent>
+          </CardActionArea>
+        </Card>
       </div>
     )
   }
 }
 
 
-export default connect()(Comment)
+export default connect()(styles(Comment))

@@ -2,6 +2,14 @@ import React, { Component } from 'react';
 import { addComment, editPostCommentsCount } from '../../redux/actions';
 import { connect } from 'react-redux';
 import * as API from '../../utils/api';
+
+// Material UI
+import FormControl from '@material-ui/core/FormControl';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+
+// Styles
+import { styles } from './styles'
 class AddComment extends Component {
   state = {
     author:'',
@@ -30,31 +38,40 @@ class AddComment extends Component {
   }   
   
   render() {
+    const {
+      classes
+    } = this.props;
+
     return (
-      <form onSubmit={event => this.handleAddComment(event)}>
-        <div className="form-group">
-          <label htmlFor="text">Add a comment:</label>
-          <input 
-            type="text" 
-            className="form-control"
+      <form autoComplete="off">
+        <FormControl className={classes.formControl}>
+          <TextField
+            label="Comment"
             value={this.state.comment} 
             onChange={(event) => this.handleChange(event.target.value,'comment')}
-            required 
+            className={classes.textField}
+            margin="normal"
+            required
           />
-        </div>
-        <div className="form-group">
-          <label htmlFor="text">Your name:</label>
-          <input 
-            type="text" 
-            className="form-control"
+          <TextField
+            label="Your Name"
             value={this.state.author} 
             onChange={(event) => this.handleChange(event.target.value,'author')}
-            required 
+            className={classes.textField}
+            margin="normal"
+            required
           />
-        </div>
-        <button type="submit" className="btn btn-sm btn-primary">Submit</button>
-    </form>
-  )
+        </FormControl>
+        <Button 
+          variant="contained" 
+          color="primary" 
+          className={classes.button}
+          onClick={event => this.handleAddComment(event)}
+        >
+          Submit
+        </Button>
+      </form>
+    )
+  }
 }
-}
-export default connect()(AddComment)
+export default connect()(styles(AddComment))
