@@ -21,10 +21,12 @@ class AddPost extends Component {
     category:'',
     content:'',
     author:'',
-  };
+  }
+
   handleChange(value, type){
       this.setState({[type]:value})
   }
+  
   handleAddPost(event){
     console.log('oi')
     event.preventDefault();
@@ -41,6 +43,7 @@ class AddPost extends Component {
       document.getElementById("closeAddPostModal").click();
     })
   }
+  
   render() {
     const {
       classes
