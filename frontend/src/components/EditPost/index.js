@@ -22,14 +22,15 @@ class EditPost extends Component {
   
   handleEditPost(event){
     event.preventDefault();
+    
     let post = {
       id: this.props.post.id,
       title: this.state.title,
       body: this.state.content,
     }
+    
     API.editPost(post).then(results =>{
       this.props.dispatch(editPost(results));
-      document.getElementById("closeEditPostModal").click();
     })
   }
 
