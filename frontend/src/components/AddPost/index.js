@@ -52,10 +52,7 @@ class AddPost extends Component {
     return (
       <React.Fragment>
         <Typography variant="h5" component="h3">
-          Simple Form Example
-        </Typography>
-        <Typography component="p">
-          The delay between when you click (Submit) and when the alert dialog pops up is intentional, to simulate server latency.
+          Add a new post
         </Typography>
         <form autoComplete="off">
           <FormControl className={classes.formControl}>

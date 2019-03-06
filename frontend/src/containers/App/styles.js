@@ -26,7 +26,11 @@ const option = theme => ({
       width: 1100,
       marginLeft: 'auto',
       marginRight: 'auto',
-    },
+    }
+  },
+  logo: {
+    color: '#fff',
+    textDecoration: 'none'
   }
 })
 

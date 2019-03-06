@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { withRouter, Route, Switch } from 'react-router-dom'
+import { withRouter, Route, Switch, Link } from 'react-router-dom'
 
 // Actions
 import { receiveCategories } from '../../redux/actions';
@@ -47,7 +47,9 @@ class App extends Component {
         <AppBar position="static" className={classes.appBar}>
           <Toolbar>
             <Typography variant="h6" color="inherit" noWrap>
-              Readable
+              <Link to='/' className={classes.logo}>
+                Readable
+              </Link>
             </Typography>
           </Toolbar>
         </AppBar>

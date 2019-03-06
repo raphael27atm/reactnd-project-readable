@@ -120,7 +120,7 @@ class Comment extends Component {
               </Button>
               <Button 
                 variant="outlined" 
-                color="danger" 
+                color="secondary" 
                 onClick = {event => this.removeComment(postId, comment.id)}
                 className={classes.button}
               >

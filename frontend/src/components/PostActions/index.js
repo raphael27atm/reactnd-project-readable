@@ -78,7 +78,7 @@ class PostActions extends Component {
         </Button>
         <Button 
           variant="outlined" 
-          color="danger" 
+          color="secondary" 
           onClick = {event => this.removePost(post.id)}
           className={classes.button}
         >

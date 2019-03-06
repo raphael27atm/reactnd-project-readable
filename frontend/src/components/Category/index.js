@@ -4,7 +4,6 @@ import AddPost from '../AddPost';
 import { connect } from 'react-redux';
 
 // Material ui
-import Grid from '@material-ui/core/Grid'
 import Modal from '@material-ui/core/Modal';
 import Button from '@material-ui/core/Button';
 import MenuItem from '@material-ui/core/MenuItem';

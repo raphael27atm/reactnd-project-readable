@@ -5,7 +5,7 @@ import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 import Grid from '@material-ui/core/Grid'
 import GithubIcon from '../assets/GithubIcon'
-import { styles } from '../../styles/footer/CopyrightBar'
+import { styles } from './styles.js'
 
 const Footer = (props) => {
   const classes = props.classes

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import {Link} from 'react-router-dom';
 import * as API from '../../utils/api';
 import { connect } from 'react-redux';
 import Comment from '../Comment';
@@ -11,8 +10,6 @@ import Post from '../Post';
 // Material ui
 import Typography from '@material-ui/core/Typography';
 
-// Styles
-import { styles } from './styles'
 class PostDetails extends Component {
   state = {
     sort: 'timestamp',
@@ -54,7 +51,6 @@ class PostDetails extends Component {
   }
 
   render() {
-    const { classes} = this.props  
     const { category, postId } = this.props.match.params;
     let post = this.props.posts.filter(p => p.id === postId);
     this.props.comments[postId] && this.props.comments[postId].sort((a,b) => (b[this.state.sort] - a[this.state.sort]));
@@ -125,4 +121,4 @@ const mapDispatchToProps = dispatch =>({
   decreasePostScore: (id) => dispatch(decreasePostScore(id)),
 })
 
-export default connect(mapStateToProps,mapDispatchToProps)(styles(PostDetails))
+export default connect(mapStateToProps,mapDispatchToProps)(PostDetails)
