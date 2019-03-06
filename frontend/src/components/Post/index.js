@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
-import PropTypes from 'prop-types';
-
 import { dateYYYYMMDDHHMMSS } from '../../utils/utils';
 import PostActions from '../PostActions';
 
-
+// Material ui
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -20,8 +18,8 @@ import { styles } from './styles'
 class Post extends Component {
 
   render() {
-
     const {post, classes} = this.props;
+    
     return (
       <React.Fragment>
         <Card className={classes.card} key={post.id}>

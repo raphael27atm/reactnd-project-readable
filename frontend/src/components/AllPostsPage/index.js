@@ -11,6 +11,8 @@ import { receivePosts } from '../../redux/actions';
 import Grid from '@material-ui/core/Grid'
 import Modal from '@material-ui/core/Modal';
 import Button from '@material-ui/core/Button';
+import MenuItem from '@material-ui/core/MenuItem';
+import Select from '@material-ui/core/Select';
 
 // Components
 import AddPost from '../AddPost';
@@ -26,7 +28,7 @@ class DefaultPage extends Component {
   };
   
   handleSort(type){
-    this.setState({sort:type});
+    this.setState({ sort:type });
   };
 
   handleOpen = () => {
@@ -39,7 +41,7 @@ class DefaultPage extends Component {
 
   componentDidMount(){
     API.posts().then(posts =>{
-        this.props.receivePosts(posts.sort((a,b) => (b.timestamp - a.timestamp)));
+      this.props.receivePosts(posts.sort((a,b) => (b.timestamp - a.timestamp)));
     })
   }
 
@@ -49,7 +51,6 @@ class DefaultPage extends Component {
     
     return(
       <React.Fragment>
-        <Button onClick={this.handleOpen}>New post</Button>
         <Modal
           aria-labelledby="simple-modal-title"
           aria-describedby="simple-modal-description"
@@ -60,12 +61,27 @@ class DefaultPage extends Component {
             <AddPost />
           </div>
         </Modal>
-        <Grid>
-          <select className="form-control" onChange={event => this.handleSort(event.target.value)}>
-            <option value="timestamp">Sort by: Date</option>
-            <option value="voteScore">Sort by: Vote Score</option>
-          </select>
-        </Grid>
+        <div className={classes.marginBottom}>
+          <Button 
+            variant="contained" 
+            color="primary"
+            onClick={this.handleOpen}
+          >
+            New post
+          </Button>
+          <Select
+            onChange={event => this.handleSort(event.target.value)}
+            className={classes.pullRight}
+            value={this.state.sort}
+            mb={10}
+          >
+            <MenuItem value="">
+              <em>None</em>
+            </MenuItem>
+            <MenuItem value="timestamp">Sort by: Date</MenuItem>
+            <MenuItem value="voteScore">Sort by: Vote Score</MenuItem>
+          </Select>
+        </div>
         <Grid>
         {this.props.posts.map(post=>(
           <Post key={post.id} 
