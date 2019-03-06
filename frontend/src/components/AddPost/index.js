@@ -27,9 +27,9 @@ class AddPost extends Component {
       this.setState({[type]:value})
   }
   
-  handleAddPost(event){
-    console.log('oi')
+  handleAddPost = (event) => {
     event.preventDefault();
+    
     let post = {
       id: Math.random().toString(13).replace('0.', ''),
       timestamp: new Date().getTime(),
@@ -40,7 +40,6 @@ class AddPost extends Component {
     }
     API.addPost(post).then(results =>{
       this.props.dispatch(addPost(results));
-      document.getElementById("closeAddPostModal").click();
     })
   }
   
@@ -71,37 +70,37 @@ class AddPost extends Component {
               <MenuItem value='react'>React</MenuItem>
               <MenuItem value='redux'>Redux</MenuItem>
               <MenuItem value='udacity'>Udacity</MenuItem>
-          </Select>
-          <TextField
-            label="Title"
-            value={this.state.title} 
-            onChange={(event) => this.handleChange(event.target.value,'title')}
-            className={classes.textField}
-            margin="normal"
-            required
-          />
-          <TextField
-            label="Content"
-            value={this.state.content} 
-            onChange={(event) => this.handleChange(event.target.value,'content')}
-            className={classes.textField}
-            margin="normal"
-            required
-          />
-          <TextField
-            label="Author"
-            value={this.state.author} 
-            onChange={(event) => this.handleChange(event.target.value,'author')}
-            className={classes.textField}
-            margin="normal"
-            required
-          />
-        </FormControl>
+            </Select>
+            <TextField
+              label="Title"
+              value={this.state.title} 
+              onChange={(event) => this.handleChange(event.target.value,'title')}
+              className={classes.textField}
+              margin="normal"
+              required
+            />
+            <TextField
+              label="Content"
+              value={this.state.content} 
+              onChange={(event) => this.handleChange(event.target.value,'content')}
+              className={classes.textField}
+              margin="normal"
+              required
+            />
+            <TextField
+              label="Author"
+              value={this.state.author} 
+              onChange={(event) => this.handleChange(event.target.value,'author')}
+              className={classes.textField}
+              margin="normal"
+              required
+            />
+          </FormControl>
         <Button 
           variant="contained" 
           color="primary" 
           className={classes.button}
-          onClick={event => this.handleAddPost(event)}
+          onClick={e => this.handleAddPost(e)}
         >
           Submit
         </Button>
