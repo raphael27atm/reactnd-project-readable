@@ -5,7 +5,7 @@ comment on their posts and other users' posts, and vote on posts and comments.
 Users will also be able to edit and delete posts and comments. Which is the final assessment project for the
 Udacity's React Fundamentals course, part of the [React Nanodegree Program](https://udacity.com/course/nd019).
 
-![](https://github.com/raphael27atm/reactnd-project-readable/blob/master/image-project.gif)
+![](https://github.com/raphael27atm/reactnd-project-readable/blob/master/image-project.gif =500x500)
 
 ## Getting Started
 
