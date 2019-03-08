@@ -48,7 +48,7 @@ class EditPost extends Component {
 
     return (
       <React.Fragment>
-        <form autoComplete="off">
+        <form autoComplete="off" onSubmit={event => this.handleEditPost(event)}>
           <FormControl className={classes.formControl}>
             <TextField
               label="Title"
@@ -71,7 +71,7 @@ class EditPost extends Component {
             variant="contained" 
             color="primary" 
             className={classes.button}
-            onClick={event => this.handleEditPost(event)}
+            type="submit"
           >
             Edit
           </Button>

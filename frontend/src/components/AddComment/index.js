@@ -43,7 +43,7 @@ class AddComment extends Component {
     } = this.props;
 
     return (
-      <form autoComplete="off">
+      <form autoComplete="off" onSubmit={event => this.handleAddComment(event)}>
         <FormControl className={classes.formControl}>
           <TextField
             label="Comment"
@@ -66,7 +66,7 @@ class AddComment extends Component {
           variant="contained" 
           color="primary" 
           className={classes.button}
-          onClick={event => this.handleAddComment(event)}
+          type="submit"
         >
           Submit
         </Button>

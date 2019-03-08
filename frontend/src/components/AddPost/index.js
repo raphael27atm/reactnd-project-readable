@@ -53,12 +53,13 @@ class AddPost extends Component {
         <Typography variant="h5" component="h3">
           Add a new post
         </Typography>
-        <form autoComplete="off">
+        <form autoComplete="off" onSubmit={e => this.handleAddPost(e)}>
           <FormControl className={classes.formControl}>
             <InputLabel htmlFor="category">Category</InputLabel>
             <Select
               value={this.state.category}
               onChange={(event) => this.handleChange(event.target.value,'category')}
+              required
               inputProps={{
                 name: 'age',
                 id: 'category',
@@ -100,7 +101,7 @@ class AddPost extends Component {
           variant="contained" 
           color="primary" 
           className={classes.button}
-          onClick={e => this.handleAddPost(e)}
+          type="submit"
         >
           Submit
         </Button>
