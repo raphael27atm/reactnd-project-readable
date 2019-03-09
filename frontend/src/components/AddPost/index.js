@@ -11,6 +11,7 @@ import TextField from '@material-ui/core/TextField';
 import Select from '@material-ui/core/Select';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import FormHelperText from '@material-ui/core/FormHelperText';
 
 // Styles
 import { styles } from './styles';
@@ -21,10 +22,13 @@ class AddPost extends Component {
     category:'',
     content:'',
     author:'',
+    displayRequired: false
   }
 
   handleChange(value, type){
-      this.setState({[type]:value})
+    this.setState({
+      [type]:value
+    })
   }
   
   handleAddPost = (event) => {
@@ -38,15 +42,32 @@ class AddPost extends Component {
       author: this.state.author,
       category: this.state.category,
     }
-    API.addPost(post).then(results =>{
-      this.props.dispatch(addPost(results));
-    })
+
+    this.categoryIsEmpty()
+
+    if (!this.state.displayRequired) {
+      
+      API.addPost(post).then(results =>{
+        this.props.dispatch(addPost(results));
+      })
+    }
+  }
+
+  categoryIsEmpty = () => {
+    if (this.state.category === '') {
+      return this.setState(() => ({
+        displayRequired: true,
+      }))
+    }
+
+    this.setState(() => ({
+      displayRequired: false,
+    }))
   }
   
   render() {
-    const {
-      classes
-    } = this.props;
+    const { displayRequired } = this.state
+    const { classes } = this.props
     
     return (
       <React.Fragment>
@@ -54,24 +75,23 @@ class AddPost extends Component {
           Add a new post
         </Typography>
         <form autoComplete="off" onSubmit={e => this.handleAddPost(e)}>
-          <FormControl className={classes.formControl}>
+          <FormControl required className={classes.formControl}>
             <InputLabel htmlFor="category">Category</InputLabel>
             <Select
               value={this.state.category}
               onChange={(event) => this.handleChange(event.target.value,'category')}
               required
               inputProps={{
-                name: 'age',
-                id: 'category',
+                id: 'category-required',
               }}
             >
-              <MenuItem value="">
-                <em>None</em>
-              </MenuItem>
               <MenuItem value='react'>React</MenuItem>
               <MenuItem value='redux'>Redux</MenuItem>
               <MenuItem value='udacity'>Udacity</MenuItem>
             </Select>
+            { displayRequired && (
+              <FormHelperText>Required</FormHelperText>
+            )}
             <TextField
               label="Title"
               value={this.state.title} 

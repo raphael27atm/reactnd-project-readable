@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import * as API from '../../utils/api';
 import { connect } from 'react-redux';
 import Comment from '../Comment';
-import { addPost, receiveComments, removePost, increasePostScore, decreasePostScore} from '../../redux/actions';
+import { addPost, receiveComments, removePost, increasePostScore, decreasePostScore, receivePosts} from '../../redux/actions';
 import AddComment from '../AddComment';
 import NotFound from '../NotFound';
 import Post from '../Post';
@@ -20,8 +20,13 @@ class PostDetails extends Component {
   }
   
   componentDidMount(){
-    const {postId } = this.props.match.params;
-    API.comments(postId).then(comments =>{
+    const { postId } = this.props.match.params;
+
+    API.posts().then(posts =>{
+      this.props.receivePosts(posts.sort((a,b) => (b.timestamp - a.timestamp)));
+    })
+    
+    API.comments(postId).then(comments =>{  
       this.props.receiveComments(comments, postId)
     })
   }
@@ -34,7 +39,7 @@ class PostDetails extends Component {
   
   increasePostScore(id){
     API.increasePostScore(id).then(results =>{
-        this.props.increasePostScore(id)
+      this.props.increasePostScore(id)
     })
   }
   
@@ -114,6 +119,7 @@ const mapStateToProps = ({posts,comments}) =>{
 }
 
 const mapDispatchToProps = dispatch =>({
+  receivePosts: (data) => dispatch(receivePosts(data)),
   addPost: (data) => dispatch(addPost(data)),
   receiveComments: (postId,comments) => dispatch(receiveComments(postId,comments)),
   removePost: (id) => dispatch(removePost(id)),
