@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { withRouter, Route, Link } from 'react-router-dom'
+import { withRouter, Route, Switch, Link } from 'react-router-dom'
 
 // Actions
 import { receiveCategories } from '../../redux/actions';
@@ -57,9 +57,11 @@ class App extends Component {
           <div className={classes.heroUnit}>
             <div className={classes.heroContent}>
               <Header categories={this.props.categories}/>  
+              <Switch>
                 <Route exact path='/' component={ AllPostsPage }/>
                 <Route exact path = "/:category" component={ Category } />
-                <Route path = "/:category/:postId" component={ PostDetails } />
+                <Route exact path = "/:category/:postId" component={ PostDetails } />
+              </Switch>
             </div>
           </div>
         </main>
